@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Course Booking</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+background:linear-gradient(to right, #1e3c72, #2a5298);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+
+        .confirmation-container {
+            max-width: 750px;
+            margin: 100px auto;
+            background: rgba(255, 255, 255, 0.96);
+            padding: 45px;
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(5px);
+        }
+
+        h2 {
+            color: #0d6efd;
+            text-align: center;
+            margin-bottom: 35px;
+            font-weight: bold;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        .form-control[readonly] {
+            background-color: #f8f9fa;
+            font-weight: 500;
+            border: 1px solid #ced4da;
+        }
+
+        .btn-confirm {
+            background-color: #198754;
+            color: white;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 8px;
+            transition: 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-confirm:hover {
+            background-color: #146c43;
+            transform: translateY(-2px);
+        }
+
+        .btn-back {
+            background-color: #0d6efd;
+            color: white;
+            font-weight: 500;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .btn-back:hover {
+            background-color: #084298;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.9); padding: 20px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+    <div class="container-fluid">
+       <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="College Logo"
+         style="width: 35px; height: 35px; margin-right: 10px;">
+    <span style="font-weight: 600;">CollegeMS</span>
+</a>
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarUser" aria-controls="navbarUser" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarUser">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/getbyafterdate}">
+                        <i class="bi bi-journal-code"></i> Explore Courses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/feedback}">
+                        <i class="bi bi-chat-left-dots-fill"></i> Feedback
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/logout}">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                </li>
+            </ul>
+
+            
+        </div>
+    </div>
+</nav>
+
+<!-- Main Container -->
+<div class="container">
+    <div class="confirmation-container">
+        <h2>Confirm Your Course Booking</h2>
+
+        <form th:action="@{/savebook/{courseId}(courseId=${books.courseId})}" th:object="${books}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Course ID</label>
+                <input type="text" th:field="*{courseId}" class="form-control text-center" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Course Name</label>
+                <input type="text" th:field="*{courseName}" class="form-control text-center" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Trainer Name</label>
+                <input type="text" th:field="*{trainerName}" class="form-control text-center" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Start Date</label>
+                <input type="text" th:field="*{startDate}" class="form-control text-center" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Course Fees</label>
+                <input type="text" th:field="*{fees}" class="form-control text-center" readonly>
+            </div>
+                            <button type="submit" class="btn btn-confirm">✅ Confirm Booking</button>
+            
+
+            <div class="text-center">
+                <a th:href="@{/getbyafterdate}" class="btn btn-back ms-3">🔙 Back to Courses</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Course</title>
+
+    <!-- Bootstrap 5 & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .navbar-trainer {
+            background-color: #343a40;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            font-size: 17px;
+        }
+
+        .navbar-brand i {
+            margin-right: 6px;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 120px auto 50px auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Trainer Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-trainer fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <i class="bi bi-person-workspace"></i> Trainer Dashboard
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarTrainer" aria-controls="navbarTrainer" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarTrainer">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a th:href="@{/AllCourse}" class="nav-link">
+                        <i class="bi bi-book-fill"></i> My Courses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/Addcourse}" class="nav-link">
+                        <i class="bi bi-plus-square-fill"></i> Add Course
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/logout}" class="nav-link">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Add Course Form -->
+<div class="container">
+    <div class="form-container">
+        <h1>Add Course</h1>
+
+        <form th:action="@{/saveCourse}" enctype="multipart/form-data" th:object="${course}" method="post">
+
+            <div class="mb-3">
+                <label class="form-label">Course Name</label>
+                <input type="text" th:field="*{courseName}" class="form-control" placeholder="Enter Course Name">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Course Duration</label>
+                <input type="text" th:field="*{Duration}" class="form-control" placeholder="e.g. 6 weeks, 3 months">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Course Fees</label>
+                <input type="number" th:field="*{fees}" class="form-control" placeholder="Enter fees in INR">
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Start Date</label>
+                    <input type="date" th:field="*{startDate}" class="form-control">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">End Date</label>
+                    <input type="date" th:field="*{endDate}" class="form-control">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Course Image</label>
+                <input type="file" name="img" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Course Description</label>
+                <textarea th:field="*{Description}" class="form-control" rows="4" placeholder="Write course details here..."></textarea>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

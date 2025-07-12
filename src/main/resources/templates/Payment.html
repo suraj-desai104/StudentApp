@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment System</title>
+
+    <!-- Bootstrap CSS & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+background:linear-gradient(to right, #1e3c72, #2a5298);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+
+        .scanner-container {
+            max-width: 600px;
+            margin: 100px auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        h2 {
+            color: #0d6efd;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .qr-image {
+            width: 250px;
+            height: 250px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .btn-scan {
+            background-color: #0d6efd;
+            color: white;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: 0.3s ease;
+        }
+
+        .btn-scan:hover {
+            background-color: #084298;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.9); padding: 20px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+    <div class="container-fluid">
+       <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="College Logo"
+         style="width: 35px; height: 35px; margin-right: 10px;">
+    <span style="font-weight: 600;">CollegeMS</span>
+</a>
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarUser" aria-controls="navbarUser" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarUser">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/getbyafterdate}">
+                        <i class="bi bi-journal-code"></i> Explore Courses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/feedback}">
+                        <i class="bi bi-chat-left-dots-fill"></i> Feedback
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/logout}">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                </li>
+            </ul>
+
+            
+        </div>
+    </div>
+</nav>
+
+<!-- Main Scanner Section -->
+<div class="container">
+    <div class="scanner-container">
+        <h2>Payment Scanner</h2>
+        
+        <!-- QR Code Image -->
+        <img th:src="@{/img/QRCODE.jpg}" alt="QR Code" class="qr-image">
+
+        <!-- Button -->
+        <div class="text-center">
+            <a th:href="@{/reportByid}" class="btn btn-scan">
+                📄 View Reports
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
