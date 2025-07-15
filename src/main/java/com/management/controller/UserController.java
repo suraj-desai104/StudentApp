@@ -174,6 +174,10 @@ public class UserController {
 		return "AboutUs";
 	}
 	
+	  @GetMapping("/")
+	    public String home() {
+	        return "redirect:/login";
+	    }
 	
 	
 
